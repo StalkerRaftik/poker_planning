@@ -1,10 +1,10 @@
-from celery import Task
-
-from django.db.models import Avg, OuterRef, Subquery, IntegerField
-from django.db.models.functions import Coalesce
-
-from project.celery import app
-from project.models import Anime, Rating
+# from celery import Task
+#
+# from django.db.models import Avg, OuterRef, Subquery, IntegerField
+# from django.db.models.functions import Coalesce
+#
+# from project.celery import app
+# from project.models import Anime, Rating
 
 #
 # class UpdateAnimeRating(Task):

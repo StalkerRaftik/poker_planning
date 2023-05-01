@@ -1,5 +1,11 @@
 /.idea/
-/backend/db.sqlite3
 .env
-/backend/media/
 /postgres_data/
+
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
