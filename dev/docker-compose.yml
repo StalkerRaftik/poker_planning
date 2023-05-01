@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+    redis:
+        image: redis:7.0-rc3-alpine3.15
+        expose:
+            - "6379"
+    postgres:
+        image: postgres:13.0-alpine
+        volumes:
+            - ../postgres_data:/var/lib/postgresql/data
+        env_file: .env
+    backend:
+        build:
+            context: ../backend
+            dockerfile: ../backend/Dockerfile.dev
+        depends_on:
+            - postgres
+        volumes:
+            - ../backend:/backend
+        command: /start.sh
+        entrypoint: /entrypoint.sh
+        env_file: .env
+        ports:
+            - "8000:8000"
+    front:
+        build:
+            context: ../frontend
+            dockerfile: ../frontend/Dockerfile.dev
+        depends_on:
+            - backend
+        volumes:
+            - ../frontend:/frontend
+        command: yarn serve
+        env_file: .env
+        ports:
+            - "8080:8080"
